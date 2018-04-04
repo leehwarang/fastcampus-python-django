@@ -18,20 +18,12 @@ palindrome = palindrome.lower().strip().replace(" ","") #대소문자 무시, �
 
 answer = True
 
-reverse = ''
-j = -1 
-
-for i in palindrome:
-    reverse = i + reverse
-    if palindrome[j:] == reverse:
-        #print(palindrome[j:])
-        #print(reverse)
-        j = j-1 
-    else: 
+for i, c in enumerate(palindrome):
+    if c != palindrome[-i-1]: #틀렸을 때만 break시키면 된다. enumerate가 자동으로 다음 인덱스로 넘겨주기 때문에. 
         answer = False
         break
-
-if answer == True:
-    print("회문 입니다.")
+if answer:
+    print("회문입니다.")
 else:
-     print("회문이 아닙니다.")
+    print("회문이 아닙니다.")
+ 
