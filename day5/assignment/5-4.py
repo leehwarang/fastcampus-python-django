@@ -15,8 +15,10 @@ def check_numeric(str):
     except:
         return False
             
-print(check_numeric("12345"))
-print(check_numeric("12345hello"))
+print(check_numeric("12345")) #true 
+print(check_numeric("12345hello")) #false
+print(check_numeric("123.5")) #true
+print(check_numeric("123.ab")) #false
 
 
 
