@@ -51,7 +51,6 @@ class Account(Wallet): #Wallet클래스를 상속 받음.
         self.account_number = account_number
         self.password = password
         self.bank = bank
-        if self.name == 
         super().__init__(name) #부모가 가지고 있는 함수 호출 
     
     def __str__(self):
@@ -61,12 +60,17 @@ class Account(Wallet): #Wallet클래스를 상속 받음.
         return '{}의 계좌입니다. 계좌번호 : {}'.format(self.owner, self.account_number)
 
     def __add__(self, another):
-            self.money + another.money 
+        if self.owner == another.owner:
+            self.money += another.money 
+            print("계좌 통합이 완료 되었습니다.")
+            print("잔액: {}".format(self.money))
+        else:
+            print("두 계좌의 소유주가 다릅니다.")
     
     def __call__(self):
         print("호출되었습니다.")
 
-    def send_money(self, money, to): #to에 객체명(f_account)를 적어야함. 
+    def send_money(self, money, to): #to에 객체명(f_account)를 적어야함
         input_password = input("패스워드를 입력하세요.")
         if self.password == input_password:
             print("확인 되었습니다.")
