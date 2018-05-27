@@ -1,10 +1,12 @@
 '''
-1. 계좌 생성시에 password 지정 및 은행이름 입력.(o.k)
-2. 송금시에 password 입력 및 일치하는지 확인(o.k)
-3. 송금시에 같은 은행이 아닌 경우에는 수수로 -500 원 별도 부여(o.k)
-4. 소유자가 같은 계좌는 + 연산자로 보유금액 합산가능(o.k)
-5. 소유자가 같은지 == 연산자 혹은 != 연산자로 확인가능(o.k)
+Bank Class의 기능 추가하기
+1. 은행 대표 번호와 계좌 번호 생성 패턴을 입력하여 인스턴스 생성하기(o.k)
+2. 계좌 번호 생성하는 메소드를 만들어서 입력받은 패턴대로 랜덤한 숫자를 더하여 계좌번호 리턴(o.k)
+3. 업그레이드된 Account Class에서 인스턴스 생성시 bank 인스턴스도 같이 입력, bank instance의 메소드를 사용하여 계좌번호 자동생성되게 조정
+4. 에러 발생시 은행 대표번호가 출력되어 문의 가능하도록 입력처리
 '''
+
+from random import randint
 
 class Wallet:
     money = 0
@@ -39,13 +41,6 @@ class Wallet:
         self.money += m
         self.print_now_money()
     
-
-#michelle_wallet = Wallet('michelle') #클래스를 사용해서 객체를 만들었을 때, 만들어진 자기 자신 객체를 지칭하는 self
-#frank_wallet = Wallet('frank')
-
-#print(my_wallet.owner)
-#my_wallet.print_owner_name()
-
 class Account(Wallet): #Wallet클래스를 상속 받음. 
     def __init__(self, name, account_number, password, bank): #부모 클래스의 오버라이드 
         self.account_number = account_number
@@ -89,6 +84,36 @@ class Account(Wallet): #Wallet클래스를 상속 받음.
         else: 
             print("패스워드를 다시 입력해주세요.")
     
+
+class Bank():
+    def __init__(self, tel, pattern): 
+        self.tel = tel
+        self.account_number = self.random_account_number(pattern) #class내에 있는 함수를 호출 할 때는 앞에 self를 붙여야 실행됨. 
+        
+        
+    def random_account_number(self, pattern): #함수의 인자에는 항상 self 써줘야함. 
+        pattern2 = pattern.split('-')
+        list = []
+
+        for i in pattern2:
+            n = 0
+            for j in range(len(i)):
+                if j == 0:
+                    n += randint(0,9)*1
+                elif j == 1:
+                    n += randint(0,9)*10
+                elif j == 2:
+                    n += randint(0,9)*100
+                elif j == 3:
+                    n += randint(0,9)*1000
+            list.append(n)
+        
+        num1 = str(list[0])
+        num2 = str(list[1])
+        num3 = str(list[2]) 
+
+        account_number = num1+"-"+num2+"-"+num3 
+        return account_number 
 
 
         
