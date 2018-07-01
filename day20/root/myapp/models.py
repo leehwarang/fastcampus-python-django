@@ -16,7 +16,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(
         Post,
-        on_delete = models.PROTECT,
+        on_delete = models.CASCADE,
         null = True
     )
     text = models.CharField(max_length = 200)
