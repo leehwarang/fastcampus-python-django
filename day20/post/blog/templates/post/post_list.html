@@ -1,0 +1,21 @@
+{% for post in posts%}
+<br/>
+<h2>{{ post.title }}</h2>
+<h4>{{ post.content }}</h4>
+<br/>
+
+-----------------
+
+{% endfor %}
+
+<h3>새 글 작성하기</h3>
+
+<!-- form, input, input submit -->
+
+<form action="{% url 'post'%}" method="POST">
+    {% csrf_token %}
+    제목: <input name="title"/> <br><br>
+    내용: <textarea name="content" rows="20">
+    </textarea>
+    <input type="submit"/>
+</form>
