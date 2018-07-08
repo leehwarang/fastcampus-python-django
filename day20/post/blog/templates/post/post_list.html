@@ -1,21 +1,31 @@
-{% for post in posts%}
-<br/>
-<h2>{{ post.title }}</h2>
-<h4>{{ post.content }}</h4>
-<br/>
 
------------------
+{% extends 'base.html' %}
 
-{% endfor %}
+{% block title %}
+글 보기 / 글 쓰기
+{% endblock %}
 
-<h3>새 글 작성하기</h3>
+{% block content %}
 
-<!-- form, input, input submit -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>head1</th>
+            <th>head2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>body1</td>
+            <td>body2</td>
+        </tr>
+    </tbody>
+    </table>
 
-<form action="{% url 'post'%}" method="POST">
-    {% csrf_token %}
-    제목: <input name="title"/> <br><br>
-    내용: <textarea name="content" rows="20">
-    </textarea>
-    <input type="submit"/>
-</form>
+{% endblock %}
+
+
+
+
+
+
