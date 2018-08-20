@@ -3,3 +3,14 @@
     <input type="text" name="keyword" />
     <button type="submit">검색</button>
 </form>
+
+{% if result %}
+{{result.keyword}}
+
+{% for movie in result.movie_set.all %}
+{{movie.name}} {{movie.release_date}}
+
+<img src="{{ movie.img_url }}" />
+
+{% endfor %}
+{% endif %}
