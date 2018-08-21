@@ -8,9 +8,14 @@
 {{result.keyword}}
 
 {% for movie in result.movie_set.all %}
-{{movie.name}} {{movie.release_date}}
+검색 keyword: {{ movie.name }} {{ movie.release_date }}<br/>
 
 <img src="{{ movie.img_url }}" />
 
 {% endfor %}
+
+{% else %}
+
+검색 결과가 없습니다. 
 {% endif %}
+
