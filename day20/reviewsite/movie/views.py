@@ -11,7 +11,7 @@ def search_movie(request, keyword=None): #여기서 받은 request는 url에서 
     print(keyword)
     if request.method == "POST": #받은게 있다면 크롤링해서 model에 저장
         keyword = request.POST['keyword']
-        if not keyword:
+        if not keyword: #받은게 없을 때 
             return redirect('search')
         results = SearchResult.objects.filter(keyword=keyword).order_by('-search_date') #가장 최근에 검색한 것 부터 보여주기 위해서 search_date의 역순 정렬
         if results: #검색한 데이터가 있고
@@ -47,7 +47,7 @@ def search_movie(request, keyword=None): #여기서 받은 request는 url에서 
         result = SearchResult.objects.filter(keyword=keyword).order_by('-search_date')
         if result[0].movie_set.all():
             return render(request, 'search.html', {'result': result[0]})
-        else: 
+        else: #처음 검색했는데, 검색 결과가 없는 경우 
             return render(request, 'search.html', {'result': False})
 
     #GET메소드 ->그냥 html 파일로 렌더링 시키기 

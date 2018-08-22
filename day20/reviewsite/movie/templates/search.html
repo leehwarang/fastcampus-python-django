@@ -1,17 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>영화 검색</h1>
+
 <form action = "{% url 'search' %}" method="POST">
     {% csrf_token %}
-    <input type="text" name="keyword" />
-    <button type="submit">검색</button>
+    <input class="form-control" type="text" name="keyword" />
+    <button class="btn btn-primary btn-block" type="submit">검색</button>
 </form>
 
 {% if result %}
 {{result.keyword}}
 
 {% for movie in result.movie_set.all %}
-검색 keyword: {{ movie.name }} {{ movie.release_date }}<br/>
-
-<img src="{{ movie.img_url }}" />
-
+<div class="col-sm-4 col-md-6">
+    <div class="jumbotron">
+        <p>
+        <strong>{{ movie.name }}</strong>{{ movie.release_date }}<br/>
+        </p>
+        <img src="{{ movie.img_url }}" width="100" />
+    </div>
+</div>
 {% endfor %}
 
 {% else %}
@@ -19,3 +28,4 @@
 검색 결과가 없습니다. 
 {% endif %}
 
+{% endblock %}
