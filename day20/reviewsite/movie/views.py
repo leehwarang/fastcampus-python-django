@@ -10,6 +10,7 @@ def search_movie(request, keyword=None): #여기서 받은 request는 url에서 
     #크롤링해서 결과값을 찾고, 보여주는 곳
     print(keyword)
     if request.method == "POST": #받은게 있다면 크롤링해서 model에 저장
+        print("post test")
         keyword = request.POST['keyword']
         if not keyword: #받은게 없을 때 
             return redirect('search')
@@ -49,7 +50,9 @@ def search_movie(request, keyword=None): #여기서 받은 request는 url에서 
             return render(request, 'search.html', {'result': result[0]})
         else: #처음 검색했는데, 검색 결과가 없는 경우 
             return render(request, 'search.html', {'result': False})
-
+    '''
+    이 아래의 코드는 이해 X
+    '''
     #GET메소드 ->그냥 html 파일로 렌더링 시키기 
     #print(request.POST['keyword'])
     return render(request, 'search.html') #넘겨 받았던, 아니던, search.html 호출 
