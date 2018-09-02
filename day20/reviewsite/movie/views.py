@@ -46,6 +46,7 @@ def search_movie(request, keyword=None): #여기서 받은 request는 url에서 
     #GET메소드 redirect된 경우, keyword가 있는 경우
     if keyword:
         result = SearchResult.objects.filter(keyword=keyword).order_by('-search_date')
+        print(result)
         if result[0].movie_set.all():
             return render(request, 'search.html', {'result': result[0]})
         else: #처음 검색했는데, 검색 결과가 없는 경우 
