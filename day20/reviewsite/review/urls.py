@@ -4,5 +4,5 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.review, name="review")
+    path('<int:movie_id>', views.review, name="review")
 ]

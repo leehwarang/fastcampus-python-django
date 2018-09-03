@@ -14,6 +14,7 @@
 
 {% for movie in result.movie_set.all %}
 <div class="col-sm-4 col-md-6">
+    <a href={% url 'review' movie.id %}>
     <div class="jumbotron">
         <p>
         <strong>{{ movie.name }}</strong>{{ movie.release_date }}<br/>
